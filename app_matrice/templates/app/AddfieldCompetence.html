@@ -1,0 +1,55 @@
+{% extends "app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div>
+    <div class="col-md-10 ">
+    <a href="javascript:history.go(-1)">Retour</a>
+    </div>
+    <div class="text-center text-success " >
+        {% if messages %}
+            {% for message in messages %}
+                <h3>{{ message }}</h3>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+    <div class=" row col-md-10 offset-1 border border-dark text-dark mb-5">
+        <div  class=" col-md-12">
+        <h4 class="mt-5">FORMULAIRE D'AJOUT DE DOMAINES -- (<a href="{% url 'matrice:Liste_des_domaines' %}">Retour à la liste des domaines</a>)</h4>
+        </div>
+        <form method="POST" class="post-form" >{% csrf_token %}
+            {{ form1.as_p }}
+            <button type="submit" name="btnform1" class="save btn btn-secondary  mb-5">VALIDER</button>
+        </form>
+    </div>
+    <div class="row col-md-10 offset-1 border border-dark text-dark mb-5">
+        <div  class=" col-md-12 ">
+        <h4 class="mt-5">FORMULAIRE D'AJOUT DE COMPÉTENCES -- (<a href="{% url 'matrice:Liste_des_compétences' %}">Retour à la liste des compétences</a>)</h4>
+        </div>
+        <form method="POST" class="post-form" >{% csrf_token %}
+            {{ form2.as_p }}
+            <button type="submit" name="btnform2" class="save btn btn-secondary  mb-5">VALIDER</button>                
+        </form>
+    </div>
+    <div class="row col-md-10 offset-1 border border-dark text-dark mb-5">
+        <div  class=" col-md-12">
+        <h4 class="mt-5">FORMULAIRE D'AJOUT DE CERTIFICATIONS -- (<a href="{% url 'matrice:Liste_des_certifications' %}">Retour à la liste des certifications</a>)</h4>
+        </div>
+        <form method="POST" class="post-form" >{% csrf_token %}
+            {{ form3.as_p }}
+            <button type="submit" name="btnform3" class="save btn btn-secondary  mb-5">VALIDER</button>
+        </form>
+    </div>
+    <div class="row col-md-10 offset-1 border border-dark text-dark mb-5">
+        <div  class=" col-md-12">
+            <h4 class="mt-5">FORMULAIRE D'AJOUT DE SOCIÉTÉS -- (<a href="{% url 'matrice:Liste_des_sociétés' %}">Retour à la liste des sociétés</a>)</h4>
+        </div>
+        <form method="POST" class="post-form" >{% csrf_token %}
+            {{ form4.as_p }}
+            <button type="submit" name="btnform4" class="save btn btn-secondary  mb-5">VALIDER</button>
+        </form>
+    </div>
+
+
+{% endblock content %}

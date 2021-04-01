@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AOOMUKI</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    {% comment %} <link href="css/sb-admin-2.min.css" rel="stylesheet"> {% endcomment %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+
+</head>
+{% load crispy_forms_tags %}
+
+<body id="page-top">
+
+  <div class="formDiv">
+        <h1 class="title">Connexion</h1>
+        <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy}}
+                    <button>Login</button>
+                  </form>
+         </div>
+                <div class="sidebar-brand-text mx-3"><img class=" fit-picture" src="..\static\img\Aoomuki.png" alt="aoomukilogo" id="aoomuki">
+                </div>
+    </div>
+</body>
+
+</html>
+<script src="https://kit.fontawesome.com/4077c6ef6a.js" crossorigin="anonymous"></script>
+
+
+{% comment %} <h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form> {% endcomment %}

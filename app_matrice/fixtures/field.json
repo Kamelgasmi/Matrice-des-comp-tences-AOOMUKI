@@ -1,0 +1,74 @@
+[
+    {
+        "model": "app_matrice.field",
+        "pk": 1,
+        "fields": {
+          "name": "CRM",
+          "description": "CRM"
+      }
+    },
+    {
+      "model": "app_matrice.field",
+      "pk": 2,
+      "fields": {
+        "name": "LANGAGE",
+        "description": "language"
+      }
+    },
+    {
+        "model": "app_matrice.field",
+        "pk": 3,
+        "fields": {
+            "name": "ETL",
+            "description": "ETL"
+        }
+      },
+      {
+        "model": "app_matrice.field",
+        "pk": 5,
+        "fields": {
+          "name": "FRAMEWORKS",
+          "description": "frameworks"
+        }
+      },
+      {
+        "model": "app_matrice.field",
+        "pk": 6,
+        "fields": {
+          "name": "MARKETING",
+          "description": "MA"
+        }
+      },
+      {
+        "model": "app_matrice.field",
+        "pk": 7,
+        "fields": {
+          "name": "QUALITE",
+          "description": "Qualité"
+        }
+      },
+      {
+        "model": "app_matrice.field",
+        "pk": 8,
+        "fields": {
+          "name": "GESTION DE PROJET",
+          "description": "gestionM de projet"
+        }
+      },
+      {
+        "model": "app_matrice.field",
+        "pk": 9,
+        "fields": {
+          "name": "DOCUMENTATION",
+          "description": "documentation"
+        }
+      },
+      {
+        "model": "app_matrice.field",
+        "pk": 10,
+        "fields": {
+          "name": "DESIGN",
+          "description": "design"
+        }
+      }
+  ]

@@ -1,0 +1,336 @@
+[
+    {
+        "model": "app_matrice.Competence",
+        "pk": 1,
+        "fields": {
+          "name": "Selligent CDM",
+          "commentary": "A",
+          "field_id": "1"
+      }
+    },
+    {
+      "model": "app_matrice.Competence",
+      "pk": 2,
+      "fields": {
+        "name": "Selligent SMC",
+        "commentary": "a",
+        "field_id": "1"
+      }
+    },
+    {
+        "model": "app_matrice.Competence",
+        "pk": 3,
+        "fields": {
+          "name": "Selligent Compaign",
+          "commentary": "a",
+          "field_id": "1"
+        }
+    },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 4,
+        "fields": {
+          "name": "Salesforce",
+          "commentary": "a",
+          "field_id": "1"
+        }
+    },
+        {
+        "model": "app_matrice.Competence",
+        "pk": 5,
+        "fields": {
+          "name": "Crème",
+          "commentary": "A",
+          "field_id": "1"
+      }
+    },
+    {
+      "model": "app_matrice.Competence",
+      "pk": 6,
+      "fields": {
+        "name": "JasperStudio",
+        "commentary": "a",
+        "field_id": "1"
+      }
+    },
+    {
+        "model": "app_matrice.Competence",
+        "pk": 7,
+        "fields": {
+          "name": "Penthao",
+          "commentary": "a",
+          "field_id": "3"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 8,
+        "fields": {
+          "name": "JasperReports",
+          "commentary": "a",
+          "field_id": "3"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 9,
+        "fields": {
+          "name": "DataStage",
+          "commentary": "a",
+          "field_id": "3"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 10,
+        "fields": {
+          "name": "Node",
+          "commentary": "a",
+          "field_id": "5"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 11,
+        "fields": {
+          "name": "Laravel",
+          "commentary": "a",
+          "field_id": "5"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 12,
+        "fields": {
+          "name": "React",
+          "commentary": "a",
+          "field_id": "5"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 15,
+        "fields": {
+          "name": "Bootstrap",
+          "commentary": "a",
+          "field_id": "5"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 16,
+        "fields": {
+          "name": "Django",
+          "commentary": "a",
+          "field_id": "5"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 18,
+        "fields": {
+          "name": "JavaScript",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 19,
+        "fields": {
+          "name": "HTML",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 20,
+        "fields": {
+          "name": "CSS",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 21,
+        "fields": {
+          "name": "Python",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 22,
+        "fields": {
+          "name": "JAVA",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 23,
+        "fields": {
+          "name": "Wordpress",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 24,
+        "fields": {
+          "name": "VBA",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 25,
+        "fields": {
+          "name": "SQL / PL SQL",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 26,
+        "fields": {
+          "name": "AJAX",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 27,
+        "fields": {
+          "name": "C++",
+          "commentary": "a",
+          "field_id": "2"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 28,
+        "fields": {
+          "name": "Suite ADOBE",
+          "commentary": "a",
+          "field_id": "10"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 29,
+        "fields": {
+          "name": "PhotoShop",
+          "commentary": "a",
+          "field_id": "10"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 30,
+        "fields": {
+          "name": "Définir une stratégie commerciale",
+          "commentary": "a",
+          "field_id": "6"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 31,
+        "fields": {
+          "name": "Choix des outils",
+          "commentary": "a",
+          "field_id": "6"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 32,
+        "fields": {
+          "name": "Monter une offre",
+          "commentary": "a",
+          "field_id": "6"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 33,
+        "fields": {
+          "name": "Amélioration de procédure",
+          "commentary": "a",
+          "field_id": "6"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 34,
+        "fields": {
+          "name": "Gestion de projets",
+          "commentary": "a",
+          "field_id": "8"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 35,
+        "fields": {
+          "name": "Conduite du changement",
+          "commentary": "a",
+          "field_id": "8"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 36,
+        "fields": {
+          "name": "Connaissances en certification",
+          "commentary": "a",
+          "field_id": "7"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 37,
+        "fields": {
+          "name": "Mener les audits",
+          "commentary": "a",
+          "field_id": "7"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 38,
+        "fields": {
+          "name": "Création de documents",
+          "commentary": "a",
+          "field_id": "9"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 39,
+        "fields": {
+          "name": "Gestion documentaire",
+          "commentary": "a",
+          "field_id": "9"
+        }
+      },
+      {
+        "model": "app_matrice.Competence",
+        "pk": 40,
+        "fields": {
+          "name": "Utilisation de GED",
+          "commentary": "a",
+          "field_id": "9"
+        }
+      }
+      
+  ]

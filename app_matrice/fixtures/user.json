@@ -1,0 +1,57 @@
+[
+    {
+        "model": "auth_user",
+        "pk": 1,
+        "fields": {
+          "Lastname": "Gasmi",
+          "Firstname": "Kamel",
+          "login": "kamel",
+          "password": "kamel",
+          "statut_id": "2"
+      }
+    },
+    {
+        "model": "auth_user",
+        "pk": 2,
+        "fields": {
+          "Lastname": "Bermont",
+          "Firstname": "Romuald",
+          "login": "romuald",
+          "password": "romuald",
+          "statut_id": "2"
+      }
+    },
+    {
+        "model": "auth_user",
+        "pk": 3,
+        "fields": {
+          "Lastname": "Durpoix",
+          "Firstname": "Stéphane",
+          "login": "stéphane",
+          "password": "stéphane",
+          "statut_id": "1"
+      }
+    },
+    {
+        "model": "auth_user",
+        "pk": 4,
+        "fields": {
+          "Lastname": "Prêtre",
+          "Firstname": "Nicolas",
+          "login": "nicolas",
+          "password": "nicolas",
+          "statut_id": "1"
+      }
+    },
+    {
+        "model": "auth_user",
+        "pk": 5,
+        "fields": {
+          "Lastname": "Langry",
+          "Firstname": "Wilfried",
+          "login": "wilfried",
+          "password": "wilfried",
+          "statut_id": "2"
+      }
+    }
+]

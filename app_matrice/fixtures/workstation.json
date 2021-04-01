@@ -1,0 +1,67 @@
+[
+    {
+        "model": "app_matrice.Listworkstation",
+        "pk": 1,
+        "fields": {
+          "name": "Développeur",
+          "commentary": "developpeur"
+      }
+    },
+    {
+      "model": "app_matrice.Listworkstation",
+      "pk": 2,
+      "fields": {
+        "name": "Designer",
+        "commentary": "designer"
+      }
+    },
+    {
+        "model": "app_matrice.Listworkstation",
+        "pk": 3,
+        "fields": {
+          "name": "Manager",
+          "commentary": "manager"
+        }
+      },
+      {
+        "model": "app_matrice.Listworkstation",
+        "pk": 4,
+        "fields": {
+          "name": "Directeur",
+          "commentary": "directeur"
+        }
+      },
+      {
+        "model": "app_matrice.Listworkstation",
+        "pk": 5,
+        "fields": {
+          "name": "Responsable",
+          "commentary": "responsable"
+        }
+      },
+      {
+        "model": "app_matrice.Listworkstation",
+        "pk": 6,
+        "fields": {
+          "name": "Ressources humaines",
+          "commentary": "RH"
+        }
+      },
+      {
+        "model": "app_matrice.Listworkstation",
+        "pk": 7,
+        "fields": {
+          "name": "Stagiaire",
+          "commentary": "stagiaire"
+        }
+      },
+      {
+        "model": "app_matrice.Listworkstation",
+        "pk": 8,
+        "fields": {
+          "name": "Administration",
+          "commentary": "administration"
+        }
+      }
+
+  ]

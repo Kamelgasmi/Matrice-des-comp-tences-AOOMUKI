@@ -1,0 +1,26 @@
+{% extends "app/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="text-center">
+<div class="text-center " >
+    {% if messages %}
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+</div> 
+<div class="text-center  text-primary border border-dark col-md-6 offset-3 mb-5">
+<h1>AJOUTER UN COLLABORATEUR</h1>
+</div>  
+    <div class="col-md-6 offset-3"> 
+        <div>
+        <form method="POST" action="{% url 'matrice:Ajouter_un_collaborateur' %} " class="post-form"  >
+            {% csrf_token %}
+            {{ form6.as_p}}
+            <button type="submit" name="btnform1" class="save btn btn-default btn btn-secondary btn-sm">VALIDER</button>
+        </form> 
+        </div>
+    </div> 
+</div>
+{% endblock%}

@@ -1,0 +1,42 @@
+[
+    {
+        "model": "app_matrice.Collaborater",
+        "pk": 4,
+        "fields": {
+          "collaborater": "Bermont",
+          "user_id": "2"
+      }
+    },
+    {
+        "model": "app_matrice.Collaborater",
+        "pk": 11,
+        "fields": {
+          "collaborater": "Durpoix",
+          "user_id": "6"
+      }
+    },
+    {
+        "model": "app_matrice.Collaborater",
+        "pk": 17,
+        "fields": {
+          "collaborater": "Langry",
+          "user_id": "4"
+      }
+    },
+    {
+        "model": "app_matrice.Collaborater",
+        "pk": 18,
+        "fields": {
+          "collaborater": "Prêtre",
+          "user_id": "5"
+      }
+    },
+    {
+        "model": "app_matrice.Collaborater",
+        "pk": 19,
+        "fields": {
+          "collaborater": "Michalowski",
+          "user_id": "3"
+      }
+    }
+]
