@@ -9,67 +9,92 @@
                 {% if user.is_authenticated%}
                 {% for profil in profil %}
                 {% if profil.user_id == user.id%} 
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                            <div class="mt-3">
-                            <h4>{{ user.last_name| upper }} {{ user.first_name| upper }}</h4>
-                            <p class="text-secondary mb-1">{{ profil.workstation.name }}</p>
-                            <p class="text-muted font-size-sm">{{ profil.society.name }}</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>{{ user.last_name| upper }} {{ user.first_name| upper }}</h4>
+                                    <p class="text-secondary mb-1">{{ profil.workstation.name }}</p>
+                                    <p class="text-muted font-size-sm">{{ profil.society.name }}</p>
+                                    <div class="text-center">
+                                    <a class="btn btn-warning" role="button" href="{% url 'matrice:Modifier_des_informations' profil_id=profil.id %}" >Modifier mes informations générales</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body" style="height: 340px">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 font-weight-bold">CERTIFICATIONS</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                {% for certification in profil.certification.all %}
+                                    <li>{{ certification.name}}</li>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-md-12">
+                <div class="row gutters-sm">
+                    <div class="col-sm-12 mb-12">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="d-flex align-items-center mb-3 font-weight-bold">DOMAINES / COMPETENCES</h3>
+                                {% comment %} {% for collaborater in collaborater %} {% endcomment %}
+                                {% comment %} {% if profil.user_id == user_id  %} {% endcomment %}
+                                {% comment %} {% if collaborater.collaborater == True %} {% endcomment %}
+                                {% for field in field %}
+                                
+                                {% for listcompetence in listcompetence%}
+                                {% comment %} {% if collaborater.user_id == user.id %} {% endcomment %}
+                                {% if listcompetence.User_id == user.id %}
+                                {% for competence in competence%}
+                                {% if competence.field_id == field.id %}
+                                {% if listcompetence.Competence_id == competence.id %}
+                                {% comment %} {% if listcompetence.Level_id == level.id %}
+                                {% if listcompetence.Interest_id == interest.id %} {% endcomment %}
+                                <div>
+                                    <div class="text-center text-primary" style="height: 10px">
+                                    <h4>{{ field.name }}</h4>
+                                    </div>
+                                    <h4 class=" text-warning" style="height: 20px">{{ competence.name }}</h4>
+                                    Niveau
+                                    <p style="height: 10px">{{ listcompetence.Level }}</p>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    Intérêt
+                                    <p style="height: 10px">{{ listcompetence.Interest }}</p>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="{{ Interest }}" aria-valuemin="0" aria-valuemax="4"></div>
+                                    </div>
+                                    <hr>
+                                {% comment %} {% endif %}
+                                {% endif %} {% endcomment %}
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                                {% comment %} {% endif %} {% endcomment %}
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">CERTIFICATIONS</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                    {% for certification in profil.certification.all %}
-                        <li>{{ certification.name}}</li>
-                    {% endfor %}
-                    </div>
-                  </div>
-                  <hr>
-                  
-                </div>
-              </div>
-              <div class="row gutters-sm">
-                <div class="col-sm-12 mb-12">
-                  <div class="card h-100">
-                    <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3">DOMAINES / COMPETENCES</h6>
-                      <small>Web Design</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Website Markup</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>One Page</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Mobile Template</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <small>Backend API</small>
-                      <div class="progress mb-3" style="height: 5px">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% comment %} {% else %}
+            <div>
+            <p>Pour créer votre profil, veuillez remplir les formulaires Informations et Compétences</p>
+            </div> {% endcomment %}
             {% endif %}
             {% comment %} {% endif %}
             {% endfor %} {% endcomment %}

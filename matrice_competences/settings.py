@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_matrice.apps.AppMatriceConfig',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework'
     
 ]
 

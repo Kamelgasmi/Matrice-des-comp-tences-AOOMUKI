@@ -67,7 +67,7 @@
                     {{form.is_superuser|as_crispy_field}}
                 </div>
                 <div class="form-field">
-                    {{form.is_staff.errors}}
+                    {% comment %} {{form.is_staff.errors}} {% endcomment %}
                     {% comment %} {{form.is_staff.label_tag}} {% endcomment %}
                     {{form.is_staff|as_crispy_field}}
                 </div>

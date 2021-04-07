@@ -4,11 +4,12 @@ from django.template import loader
 from .models import *
 from django.contrib import messages
 # from django.views.generic.list import ListView
-from django.contrib.auth.forms import UserCreationForm
-from .forms import AddUserForm, AddCollaboraterForm, AddFieldForm, AddCompetenceForm, AddCertificationForm, AddSocietyForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from .forms import AddUserForm, AddCollaboraterForm, AddFieldForm, AddCompetenceForm, AddCertificationForm, AddSocietyForm, ProfilForm, ModifyProfilForm, AddCompCollabForm
 from django.contrib.auth.decorators import login_required
-
-
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 # class UserList(ListView):
   
 #     # specify the model for list view
@@ -92,9 +93,9 @@ def CollaboraterProfil(request, user_id):
     user=get_object_or_404(User,pk=user_id)
     collaborater = Collaborater.objects.all()
     profil = Profil.objects.all()
-    # field=Field.objects.all()
-    # listcompetence = ListofCompetence.objects.all()
-    # competence=Competence.objects.all()
+    field=Field.objects.all()
+    listcompetence = ListofCompetence.objects.all()
+    competence=Competence.objects.all()
     # level=ListLevel.objects.all()
     # interest=ListInterest.objects.all()
     # qs = user.app_set.all()
@@ -102,9 +103,9 @@ def CollaboraterProfil(request, user_id):
         'user':user,
         'collaborater':collaborater,
         'profil':profil,
-        # 'field':field,
-        # 'listcompetence':listcompetence,
-        # 'competence':competence,
+        'field':field,
+        'listcompetence':listcompetence,
+        'competence':competence,
         # 'level':level,
         # 'interest':interest,
         # 'qs':qs
@@ -177,7 +178,7 @@ def register(request):
             collab.user = user
             collab.save()
             messages.success(request,f'Bienvenue {username}, votre compte a été crée avec succés')
-            return redirect('matrice:index')
+            return redirect('matrice:Liste_des_utilisateurs')
         else:
             messages.error(request, "Vous avez déjà un compte")
     else:
@@ -255,7 +256,139 @@ def AddFieldCompDegreeSociety(request):
         form4 = AddSocietyForm()
     return render(request, 'app/AddFieldCompetence.html', {'form1': form1, 'form2': form2, 'form3': form3, 'form4': form4})
 
+def AddInfoCollab(request, user_id):
+    profil = Profil.objects.all()
+    user = get_object_or_404(User,pk=user_id)
+    form = ProfilForm()
+    # form5 = CollaboraterForm()
+    context = {
+        'user': user,
+        'profil': profil,
+        'form': form,
+        # 'form5': form5
+    }
+    if request.method == 'POST' and 'btnform2' in request.POST : #and request.is_ajax
+        if request.user.is_authenticated:
+            form = ProfilForm(request.POST)
+            if form.is_valid():
+                society = form.cleaned_data['society']
+                Extern = form.cleaned_data['Extern']
+                workstation = form.cleaned_data['workstation']
+                profil = Profil.objects.filter(user=user_id)
+                if not profil.exists():
+                    formComp1 = form.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
+                    formComp1.user = User.objects.get(pk=request.user.id) 
+                    formComp1.save() # sauvergarde tout cette fois ci
+                    form.save_m2m()#sauvergarde le champs manytomany
+                    messages.success(request, "Vos informations ont été ajoutées.")
+                    return render(request, 'app/formInformationCollab.html', context)
+                else:
+                    messages.error(request, "Vous avaez déja enregistré vos informations ")
+    else:
+        form = ProfilForm()
+        # form5 = CollaboraterForm()
+        context = {
+        'user': user,
+        'profil': profil,
+        'form': form,
+        # 'form5': form5
+        }
+    return render(request, 'app/FormInformationCollab.html', context)
 
+def ModifyInfoCollab(request, profil_id, ):
+    profil = get_object_or_404(Profil,pk=profil_id)
+    form = ModifyProfilForm(instance=profil)
+    context = {
+        'profil': profil,
+        'form': form
+    }
+    if request.method == 'POST' and 'btnform2' in request.POST : #and request.is_ajax
+        if request.user.is_authenticated:
+            form = ModifyProfilForm(request.POST, instance=profil)
+            if form.is_valid():
+                society = form.cleaned_data['society']
+                Extern = form.cleaned_data['Extern']
+                workstation = form.cleaned_data['workstation']
+                formComp2 = form.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
+                formComp2.save() # sauvergarde tout cette fois ci
+                form.save_m2m()#sauvergarde le champs manytomany
+                # data = {
+                # 'message':'form is saved'
+                # }
+                # return JsonResponse(data)
+                messages.success(request, "Vos informations ont été modifiées")
+                form = ModifyProfilForm()
+                return render(request, 'app/FormModifyInfoCollab.html', context)
+    else:
+        form3 = ModifyProfilForm(instance=profil)
+        context = {
+        'profil': profil,
+        'form': form
+        }
+    return render(request, 'app/FormModifyInfoCollab.html', context)
+
+def AddCompetenceCollab(request, user_id):
+    profil = Profil.objects.all()
+    collaborater = Collaborater.objects.all()
+    certification = ListCertification.objects.all()
+    user = get_object_or_404(User,pk=user_id)
+    listcompetence = ListofCompetence.objects.all()
+    competence = Competence.objects.all()
+    form = AddCompCollabForm()
+    context = {
+        'user': user,
+        'profil': profil,
+        'listcompetence': listcompetence,
+        'form': form,
+        'collaborater': collaborater,
+    }
+    if request.method == 'POST' and 'btnform1' in request.POST: #and request.is_ajax
+        if request.user.is_authenticated:
+            form = AddCompCollabForm(request.POST)
+            if form.is_valid():
+                interest = form.cleaned_data['Interest']
+                level = form.cleaned_data['Level']
+                competence = form.cleaned_data['Competence']
+                listcomp = ListofCompetence.objects.filter(User_id=user_id, Competence=competence)
+                if not listcomp.exists():
+                    formComp = form.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
+                    formComp.User = User.objects.get(pk=request.user.id) 
+                    formComp.save() # sauvergarde tout cette fois ci
+                    messages.success(request, "La compétence a été ajoutée")
+                    form = AddCompCollabForm()
+                    return render(request, 'app/FormCompetencesCollab.html', context)
+                else:
+                    messages.error(request, "Vous avez déjà ajouté cette compétence")
+    else:
+        form = AddCompCollabForm()
+        context = {
+        'user': user,
+        'profil': profil,
+        'listcompetence': listcompetence,
+        'form': form,
+        'collaborater': collaborater,
+        }
+    return render(request, 'app/FormCompetencesCollab.html', context)
+
+# class PasswordsChangeView(PasswordChangeView):
+#     from_class = PasswordChangeForm
+#     succes_url = reverse_lazy('index')
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user )
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, form.user)  # Important!
+            messages.success(request, 'Votre mot de passe a été mis à jour')
+            return redirect('matrice:change_password')
+        else:
+            messages.error(request, 'Veuillez entrer un mot de passe valide')
+            return redirect('matrice:change_password')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'registration/change_password.html', {'form': form })
+    
 # def AddCollabForm(request):
 #     collaborater = Collaborater.objects.all()
 #     form6 = AddCollaboraterForm()

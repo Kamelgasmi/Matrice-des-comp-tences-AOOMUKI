@@ -3,8 +3,8 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                  <!-- Topbar Search -->
                         <div class="input-group">
-                            <div class="input-group-append mr-2 d-none d-lg-inline text-gray-600 small">
-                                <h6>MATRICE DES COMPÉTENCES AOOMUKI</h6>
+                            <div class="input-group-append mr-2 d-none d-lg-inline text-dark-600 small font-weight-bold">
+                                <h6 class="font-weight-bold">MATRICE DES COMPÉTENCES AOOMUKI</h6>
                             </div>
                         </div>
                         <div class="input-group">
@@ -18,7 +18,8 @@
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                                 {% if user.is_authenticated %}
-                    <a href="{% url 'matrice:Deconnexion' %}"></i>Déconnexion</a>
+                    {% comment %} <button href="{% url 'matrice:Deconnexion' %}" type="submit" name="btnform1" class="save btn btn-secondary">Déconnexion</button> {% endcomment %}
+                    <a href="{% url 'matrice:Deconnexion' %}" class="text-dark"></i>Déconnexion</a>
                     {% endif%}
                     </li>
                     </ul>

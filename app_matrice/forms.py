@@ -1,7 +1,7 @@
 from django.forms import ModelForm, TextInput, EmailInput, FileInput, PasswordInput, Select, CheckboxInput,RadioSelect, CheckboxSelectMultiple
 from django.forms.utils import ErrorList
 from django import forms
-from .models import Collaborater,Competence, Field, ListCertification, Society
+from .models import Collaborater,Competence, Field, ListCertification, Society, Profil, ListofCompetence
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import formset_factory
@@ -63,3 +63,34 @@ class AddSocietyForm(ModelForm):
             'name': TextInput(attrs={'class': 'form-control'}),
         }
 
+class ProfilForm(forms.ModelForm):
+    certification = forms.ModelMultipleChoiceField(queryset=ListCertification.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
+    class Meta:
+        model = Profil
+        fields = ["society", "Extern", "workstation", "certification" ]
+        widgets = {
+            'society': Select(attrs={'class': 'form-control'}),
+            'workstation':Select(attrs={'class': 'form-control'}),
+            'Extern':CheckboxInput(attrs={'class': 'form-control'}),
+        }
+        
+class ModifyProfilForm(forms.ModelForm):
+    certification = forms.ModelMultipleChoiceField(queryset=ListCertification.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
+    class Meta:
+        model = Profil
+        fields = ["society", "Extern", "workstation", "certification" ]
+        widgets = {
+            'society': Select(attrs={'class': 'form-control'}),
+            'workstation':Select(attrs={'class': 'form-control'}),
+            'Extern':CheckboxInput(attrs={'class': 'form-control'}),
+        }
+
+class AddCompCollabForm(forms.ModelForm):
+    class Meta:
+        model = ListofCompetence
+        fields = [ "Competence", "Interest", "Level" ]
+        widgets = {
+            'Competence': Select(attrs={'class': 'form-control'}),
+            'Interest': Select(attrs={'class': 'form-control'}),
+            'Level':Select(attrs={'class': 'form-control'}),
+        }

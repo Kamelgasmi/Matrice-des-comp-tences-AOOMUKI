@@ -8,7 +8,7 @@
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <div class="sidebar-heading">
+            <div class="sidebar-heading text-secondary">
                 Utilisateur
             </div>
             {% if user.is_authenticated %}
@@ -16,15 +16,17 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                <a class="nav-link collapsed text-dark" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <span>MENU</span>
+                    <span class="font-weight-bold">MENU</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="" >Mon profil</a>
-                        <a class="collapse-item" href="">Formulaires Informations</a>
-                        <a class="collapse-item" href="">Formulaire  Compétences</a>
+                        <a class="collapse-item" href="{% url 'matrice:Mon_profil' user_id=user.id %}" >Mon profil</a>
+                        <div class="sidebar-heading text-secondary">Créer mon profil :</div>
+                        <a class="collapse-item" href="{% url 'matrice:Ajouter_des_informations_générales' user_id=user.id %}">Formulaires Informations</a>
+                        <a class="collapse-item" href="{% url 'matrice:Ajouter_des_compétences' user_id=user.id %}">Formulaire  Compétences</a>
+                        <a class="collapse-item" href="{% url 'matrice:change_password' user_id=user.id %}">Modifier mon<br/> mot de passe </a>
                     </div>
                 </div>
             </li>
@@ -39,31 +41,34 @@
             {% else %}
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                <a class="nav-link collapsed font-weight-bold" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <span>MENU</span>
+                    <span class="font-weight-bold">MENU</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse text-dark" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{% url 'matrice:Mon_profil' user_id=user.id %}" >Mon profil</a>
-                        <a class="collapse-item" href="">Formulaires Informations</a>
-                        <a class="collapse-item" href="">Formulaire  Copétences</a>
+                        <div class="sidebar-heading text-primary">Créer mon profil :</div>
+                        <a class="collapse-item text-dark" href="{% url 'matrice:Ajouter_des_informations_générales' user_id=user.id %}">Formulaires Informations</a>
+                        <a class="collapse-item" href="{% url 'matrice:Ajouter_des_compétences' user_id=user.id %}">Formulaire  Compétences</a>
+                        <a class="collapse-item" href="{% url 'matrice:change_password'  %}">Modifier mon<br/> mot de passe </a>
+
                     </div>
                 </div>
             </li>
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div class="sidebar-heading text-secondary">
                 Admin
             </div>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                <a class="nav-link collapsed font-weight-bold" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <span>MENU</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Listes:</h6>
+                        <h6 class="collapse-header text-secondary">Listes:</h6>
                         <a class="collapse-item" href="{% url 'matrice:Liste_des_utilisateurs' %}" >Liste des utilisateurs</a>
                         <a class="collapse-item" href="{% url 'matrice:Liste_des_collaborateurs' %}">Liste des collaborateurs</a>
                         <a class="collapse-item" href="{% url 'matrice:Liste_des_domaines' %}">Liste des domaines</a>
@@ -71,7 +76,7 @@
                         <a class="collapse-item" href="{% url 'matrice:Liste_des_certifications' %}">Liste des certifications</a>
                         <a class="collapse-item" href="{% url 'matrice:Liste_des_sociétés' %}">Liste des sociétés</a>
                         <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Formulaires:</h6>
+                        <h6 class="collapse-header text-secondary">Formulaires:</h6>
                         <a class="collapse-item" href="{% url 'matrice:Enregistrement' %}">Ajouter : <br/>Utilisateur<br/>Collaborater
                         {% comment %} <a class="collapse-item" href="{% url 'matrice:Ajouter_un_collaborateur' %}">Ajouter un collaborateur</a> {% endcomment %}
                         <a class="collapse-item" href="{% url 'matrice:Ajouter_Domaines_Compétences' %}">Ajouter : <br/>Domaine<br/>Compétences<br/>Certifications<br/>Sociétés</a>
