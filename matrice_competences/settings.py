@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_matrice.apps.AppMatriceConfig',
     'crispy_forms',
-    'rest_framework'
+    'rest_framework',
+    # 'django.contrib.sites',
+    # 'wagtail'
     
 ]
 
@@ -137,3 +139,6 @@ LOGIN_REDIRECT_URL = 'matrice:index'
 LOGIN_URL = 'matrice:Connexion'
 
 LOGOUT_URL = 'matrice:Deconnexion'
+
+# AUTH_USER_MODEL = "app_matrice.CustomUser" 
+# SITE_ID = 1

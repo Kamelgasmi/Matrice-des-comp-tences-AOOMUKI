@@ -2,14 +2,25 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 
 class Society(models.Model):
     name = models.CharField('Société', max_length=200, unique=True)
+    # user = models.ForeignKey(User,on_delete=models.CASCADE, null=True, default=1)
+    # profil = models.OneToOneField(Profil, verbose_name="Profil ", on_delete=models.CASCADE, null=True, blank=True, unique=True)
     def __str__(self):
         return self.name
     class Meta:
         verbose_name = "Société"
+        
+# class CustomUser(AbstractUser):
+#     society = models.ForeignKey(Society,verbose_name="Société", on_delete=models.CASCADE, null=True)
+#     class Meta:
+#         ordering = ['last_name']
 
+#     def __str__(self):
+#         return f"{self.username}: {self.first_name} {self.last_name}"
+    
 class ListCertification(models.Model):
     name = models.CharField('nom', max_length=200, unique=True)
     def __str__(self):
@@ -70,15 +81,23 @@ class Collaborater(models.Model):
 
 class Profil(models.Model):
     Extern = models.BooleanField('Externe à l\'entreprise?',default=False)
-    society = models.ForeignKey(Society,verbose_name="Société", on_delete=models.CASCADE, null=True)
     workstation = models.ForeignKey(ListWorkStation, verbose_name="Poste de travail", on_delete=models.CASCADE, null=True)
     certification = models.ManyToManyField(ListCertification, related_name='collaboraters', blank=True)
+    society = models.ForeignKey(Society,verbose_name="Société", on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, verbose_name="Utilisateur ", on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.user.username
     class Meta:
         verbose_name = "Profil"
-    
+
+class ProfilUser(models.Model):
+    society = models.ForeignKey(Society,verbose_name="Société", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, verbose_name="Utilisateur ", on_delete=models.CASCADE, null=True)
+    def __str__(self):
+        return self.user.username
+    class Meta:
+        verbose_name = "Profil_utilisateur"
+
     # def get_absolute_url(self):
     #     return reverse('matrice:Mon_profil', kwargs={"pk":self.pk})
 

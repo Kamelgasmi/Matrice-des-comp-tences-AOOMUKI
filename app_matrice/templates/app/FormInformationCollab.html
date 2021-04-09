@@ -1,13 +1,13 @@
 {% extends 'app/base.html' %}
 
-{% block content %} 
+{% block content %}
+{% if user.is_authenticated%}
 
 <div class="right_col" role="main">
     <div class="">
     <a href="javascript:history.go(-1)">Retour</a>
 
         <div class="page-title">
-            {% if user.is_authenticated%}
             {% comment %} {% for user in collaborater %} {% endcomment %}
             {% comment %} {% if collaborater.user_id == user.id%} {% endcomment %}
                 <div class="col-12 text-center">
@@ -15,7 +15,6 @@
                     {% comment %} <h2>{{ collaborater.society.name }}</h2>
                     <h2>{{ collaborater.workstation.name }} {{ user.last_name }}</h2>  {% endcomment %}
                 </div>
-            {% endif %}
             {% comment %} {% endfor %}
             {% endif %} {% endcomment %}
                 <div class="">
@@ -29,14 +28,26 @@
                     <div class="text-center">
                         <h3>MES INFORMATIONS GÉNÉRALES</h3>
                     </div>  
+
                     <div class="col-md-12"> 
                         <div id=""></div>
                             <div>
                             <form method="POST" class="post-form"  >
+{% for collaborater in collaborater %}
+{% if collaborater.user_id == user.id %}
+{% if collaborater.collaborater == True %}
                                     {% csrf_token %}
                                     {{ form.as_p}}
                                     {% comment %} {{ form5.as_p}} {% endcomment %}
                                     <button type="submit" name="btnform2" class="save btn btn-secondary btn-sm">VALIDER</button>
+{% else %}
+                                    {% csrf_token %}
+                                    {{ form1.as_p}}
+                                    {% comment %} {{ form5.as_p}} {% endcomment %}
+                                    <button type="submit" name="btnform1" class="save btn btn-secondary btn-sm">VALIDER</button>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
                             </form> 
                             </div>
                         </div> 
@@ -45,5 +56,8 @@
         </div>
     </div>
 </div>
+
+                        
+                                    {% endif %}
 
 {% endblock %}

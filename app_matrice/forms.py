@@ -1,11 +1,26 @@
 from django.forms import ModelForm, TextInput, EmailInput, FileInput, PasswordInput, Select, CheckboxInput,RadioSelect, CheckboxSelectMultiple
 from django.forms.utils import ErrorList
 from django import forms
-from .models import Collaborater,Competence, Field, ListCertification, Society, Profil, ListofCompetence
+from .models import Collaborater,Competence, Field, ListCertification, Society, Profil, ListofCompetence, ProfilUser
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import formset_factory
 from django.forms import modelformset_factory
+# from .models import CustomUser
+# from wagtail.users.forms import UserCreationForm, UserEditForm
+
+
+# class WagtailUserCreationForm(UserCreationForm):
+#     class Meta(UserCreationForm.Meta):
+#         model = CustomUser
+#         widgets = {'society': forms.Select(attrs={'class': 'form-control'})}
+
+
+# class WagtailUserEditForm(UserEditForm):
+#     class Meta(UserEditForm.Meta):
+#         model = CustomUser
+#         widgets = {'society': forms.Select(attrs={'class': 'form-control'})}
+        
 # from .fields import GroupedModelChoiceField
 
 # class ParagraphErrorList(ErrorList):
@@ -29,6 +44,14 @@ class AddCollaboraterForm(forms.ModelForm):
             'collaborater':CheckboxInput(attrs={'class': 'form-control'}),
             'user':Select(attrs={'class': 'form-control'}),
         }
+
+# class AddSocietyForm(UserCreationForm):
+#     class Meta:
+#         model = Society
+#         fields = ["name"]
+#         widgets = {
+#             'name':Select(attrs={'class': 'form-control'}),
+#         }
         
 class AddFieldForm(ModelForm):
     class Meta:
@@ -84,6 +107,22 @@ class ModifyProfilForm(forms.ModelForm):
             'workstation':Select(attrs={'class': 'form-control'}),
             'Extern':CheckboxInput(attrs={'class': 'form-control'}),
         }
+
+class ProfilFormUser(forms.ModelForm):
+    class Meta:
+        model = ProfilUser
+        fields = ["society" ]
+        widgets = {
+            'society': Select(attrs={'class': 'form-control'}),
+        }
+        
+# class ModifyProfilFormUser(forms.ModelForm):
+#     class Meta:
+#         model = Profil
+#         fields = ["society" ]
+#         widgets = {
+#             'society': Select(attrs={'class': 'form-control'}),
+#         }
 
 class AddCompCollabForm(forms.ModelForm):
     class Meta:

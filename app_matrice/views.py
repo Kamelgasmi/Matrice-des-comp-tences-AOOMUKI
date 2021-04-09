@@ -5,7 +5,7 @@ from .models import *
 from django.contrib import messages
 # from django.views.generic.list import ListView
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
-from .forms import AddUserForm, AddCollaboraterForm, AddFieldForm, AddCompetenceForm, AddCertificationForm, AddSocietyForm, ProfilForm, ModifyProfilForm, AddCompCollabForm
+from .forms import AddUserForm, AddCollaboraterForm, AddFieldForm, AddCompetenceForm, AddCertificationForm, AddSocietyForm, ProfilForm, ModifyProfilForm, AddCompCollabForm, AddSocietyForm, ProfilFormUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.views import PasswordChangeView
@@ -25,9 +25,11 @@ def index(request):
 #*************************************************************************************************************
 def ListUsers(request):
     profil = Profil.objects.all()
+    profiluser = ProfilUser.objects.all()
     collaborater = Collaborater.objects.all()
     users = User.objects.all()
     context = {
+        'profiluser':profiluser,
         'profil': profil,
         'users': users,
         'collaborater': collaborater,
@@ -74,22 +76,19 @@ def Profils(request, collaborater_id):
     profil = Profil.objects.all()
     # listcompetence = ListofCompetence.objects.all()
     # competence=Competence.objects.all()
-    # level=ListLevel.objects.all()
-    # interest=ListInterest.objects.all()
     context = {
         'profil':profil,
         # 'field':field,
         # 'listcompetence':listcompetence,
         # 'competence':competence,
-        # 'level':level,
-        # 'interest':interest,
         'collaborater':collaborater,
         'user':user,
     }
-    return render(request, 'app/profil.html', context)
+    return render(request, 'app/Profil.html', context)
 
 # @login_required
 def CollaboraterProfil(request, user_id):
+    profiluser = ProfilUser.objects.all()
     user=get_object_or_404(User,pk=user_id)
     collaborater = Collaborater.objects.all()
     profil = Profil.objects.all()
@@ -100,6 +99,7 @@ def CollaboraterProfil(request, user_id):
     # interest=ListInterest.objects.all()
     # qs = user.app_set.all()
     context = {
+        'profiluser':profiluser,
         'user':user,
         'collaborater':collaborater,
         'profil':profil,
@@ -258,13 +258,20 @@ def AddFieldCompDegreeSociety(request):
 
 def AddInfoCollab(request, user_id):
     profil = Profil.objects.all()
+    profiluser = ProfilUser.objects.all()
     user = get_object_or_404(User,pk=user_id)
+    collaborater = Collaborater.objects.all()
     form = ProfilForm()
+    form1 = ProfilFormUser()
     # form5 = CollaboraterForm()
     context = {
         'user': user,
         'profil': profil,
+        'profiluser': profiluser,
         'form': form,
+        'collaborater': collaborater,
+        'form1': form1,
+
         # 'form5': form5
     }
     if request.method == 'POST' and 'btnform2' in request.POST : #and request.is_ajax
@@ -284,13 +291,32 @@ def AddInfoCollab(request, user_id):
                     return render(request, 'app/formInformationCollab.html', context)
                 else:
                     messages.error(request, "Vous avaez déja enregistré vos informations ")
+                    
+    elif request.method == 'POST' and 'btnform1' in request.POST : #and request.is_ajax
+        if request.user.is_authenticated:
+            form1 = ProfilFormUser(request.POST)
+            if form1.is_valid():
+                # society = form.cleaned_data['society']
+                profiluser = ProfilUser.objects.filter(user=user_id)
+                if not profiluser.exists():
+                    formComp2 = form1.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
+                    formComp2.user = User.objects.get(pk=request.user.id) 
+                    formComp2.save() # sauvergarde tout cette fois ci
+                    messages.success(request, "Vos informations ont été ajoutées.")
+                    return render(request, 'app/formInformationCollab.html', context)
+                else:
+                    messages.error(request, "Vous avez déja enregistré vos informations ")
     else:
         form = ProfilForm()
+        form1 = ProfilFormUser()
         # form5 = CollaboraterForm()
         context = {
         'user': user,
         'profil': profil,
+        'profiluser': profiluser,
         'form': form,
+        'form1': form1,
+        'collaborater': collaborater,
         # 'form5': form5
         }
     return render(request, 'app/FormInformationCollab.html', context)
@@ -301,6 +327,7 @@ def ModifyInfoCollab(request, profil_id, ):
     context = {
         'profil': profil,
         'form': form
+
     }
     if request.method == 'POST' and 'btnform2' in request.POST : #and request.is_ajax
         if request.user.is_authenticated:

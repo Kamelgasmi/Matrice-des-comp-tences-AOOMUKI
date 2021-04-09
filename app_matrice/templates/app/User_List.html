@@ -7,7 +7,6 @@
     <a href="javascript:history.go(-1)" class=" border border-dark text-dark ml-2">Retour</a>
         <div class="page-title">
             <div>
-
                 <div class="text-center border border-dark col-md-6 offset-3 mb-5">
                 <h1>LISTE DES UTILISATEURS</h1>
                 <div class="text-center  text-success" >
@@ -20,79 +19,57 @@
                 </div>
                 {% comment %} {% include 'app/search_form.html' %} {% endcomment %}
                 <table class="mb-5 mt-5 col-md-10 offset-1">
-                    {% comment %} <tr>
-                        <th class="text-warning" scope="col">NOM / PRENOM</th>
-                        <th class="text-warning" scope="col">SOCIETE</th>
-                    </tr> {% endcomment %}
                     {% for user in users %}
-
-
-                    <tr height="50">
-                        <td width="200" scope="row">
-                            <p>{{ user.last_name | upper }} {{ user.first_name }}</p>
-                            <hr>
-                        </td>
-                        {% for profil in profil %}
-                        {% if user.id == profil.user_id %}
-                        <td width="200">
-                            <p>{{ profil.society.name }}</p>
-                            <hr>
-                        </td>
-                        {% else %}
-                        <p></p> 
-                        {% endif %}
-                        {% endfor %}
-                        {% for collaborater in collaborater %}
-                        {% if user.id == collaborater.user_id %}
-                        {% if collaborater.collaborater == True %}
-
-                        <td width="200">
-                            <p>Est un collaborateur<p>
-                            <hr>
-                        </td>
-                        {% else %}
-                        <td width="200">
-                            <p>N'est pas un collaborateur<p>
-                            <hr>
-                        </td>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %} 
-                        <td width="200">
-                            <form class="form-inline" action="{% url 'matrice:DeleteUser' user_id=user.id %}"  method="post" onclick="return confirm('Etes vous sur de vouloir supprimer {{ user.Lastname }} {{ user.Firstname }} ');">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-warning btn-sm">Supprimer l'utilisateur</button>
-                            </form>  
-                            <hr>
-                        </td>
-                        
-                         {% for profil in profil %}
-                         {% for collaborater in collaborater %}
-
-                        {% if user.id == profil.user_id %}
-                        {% if user.id == collaborater.user_id %}
-
-                        <td width="200">
-                            <form class="form-inline" action="{% url 'matrice:Profils' collaborater_id=collaborater.id %}"  method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-secondary btn-sm">Voir le profil Collaborateur</button>
-                            </form> 
-                            <hr>
-                        </td>
-                        {% else %}
-                        <p></p>
-                        {% endif %}{% endif %}{% endfor %}{% endfor %} 
-                    </tr>
-                                                            {% comment %} {% endif %}
-
-                                        {% endfor %} {% endcomment %}
-
+                    {% for collaborater in collaborater %}
+                    {% if user.id == collaborater.user_id %}
+                    {% if collaborater.collaborater == False %}
+                        <tr height="50">
+                            <td width="200" scope="row">
+                                <p>{{ user.last_name | upper }} {{ user.first_name }}</p>
+                                <hr>
+                            </td>
+                            <td width="200">
+                            {% for profiluser in profiluser %}
+                            {% if user.id == profiluser.user_id %}
+                                <p>{{ profiluser.society.name }}</p>
+                                <hr>
+                            {% endif %} 
+                            {% endfor %} 
+                            </td>
+                            <td width="200">
+                                <form class="form-inline" action="{% url 'matrice:DeleteUser' user_id=user.id %}"  method="post" onclick="return confirm('Etes vous sur de vouloir supprimer {{ user.Lastname }} {{ user.Firstname }} ');">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-warning btn-sm">Supprimer l'utilisateur</button>
+                                </form>  
+                                <hr>
+                            </td>
+                            {% comment %} {% for profil in profil %}
+                            {% for collaborater in collaborater %}
+                            {% if user.id == profil.user_id %}
+                            {% if user.id == collaborater.user_id %}
+                            <td width="200">
+                                <form class="form-inline" action="{% url 'matrice:Profils' collaborater_id=collaborater.id %}"  method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-secondary btn-sm">Voir le profil Collaborateur</button>
+                                </form> 
+                                <hr>
+                            </td>
+                            {% else %}
+                            <p></p>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}  {% endcomment %}
+                        </tr>
+                    {% endif %}
+                    {% endif %}
                     {% endfor %}
+                    {% endfor %}
+
                 </table>
             </div>
         </div>
     </div>
 </div>
-
-
 {% endblock %} 
+

@@ -22,6 +22,9 @@
                 <div class="text-center">
                     <h3>MES COMPÉTENCES</h3>
                 </div>  
+                {% for collaborater in collaborater%}
+                {% if collaborater.user_id == user.id%}
+                {% if collaborater.collaborater == True%}
                 <div class="col-md-12"> 
                     <div id=""></div>
                         <div>
@@ -38,6 +41,9 @@
                 <div>
                     <p>Pour ajouter vos compétences, vous devez être enregistrer en tant que collaborateur</p>
                 </div>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
                 {% endif %}
                 {% comment %} {% endif %}
                 {% endfor %}

@@ -26,6 +26,7 @@
                         <th class="text-warning" scope="col">SOCIETE</th>
                     </tr> {% endcomment %}
                     {% for collaborater in collaborater %}
+                    {% if collaborater.collaborater == True %}
                     <tr height="50">
                     {% for profil in profil %}
                     {% if profil.user_id == collaborater.user_id %}
@@ -54,6 +55,8 @@
                         {% endif %}
                     {% endfor %}
                     </tr>
+                        {% endif %}
+
                     {% endfor %}
                 </table>
             </div>

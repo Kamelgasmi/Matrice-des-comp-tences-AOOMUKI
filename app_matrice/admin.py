@@ -4,8 +4,28 @@ from django.contrib import admin
 from django.contrib import admin
 from .models import ListWorkStation, ListCertification,  Society, Profil, Collaborater, Field, Competence
 from django.contrib.auth.models import User
-
+from django.contrib.auth.admin import UserAdmin
+# from .models import CustomUser
+# from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 admin.site.site_header = 'Administration Matrice des compétences AOOMUKI'
+
+# class CustomUserAdmin(UserAdmin):
+#     add_form = UserCreationForm
+#     form = UserChangeForm
+#     model = CustomUser
+#     list_display = ['pk', 'email', 'username', 'first_name', 'last_name']
+#     add_fieldsets = UserAdmin.add_fieldsets + (
+#         (None, {'fields': ('email', 'first_name', 'last_name',)}),
+#     )
+#     fieldsets = UserAdmin.fieldsets
+#     add_fieldsets = UserAdmin.add_fieldsets + (
+#         (None, {'fields': ('email', 'first_name', 'last_name', 'society')}),
+#     )
+#     fieldsets = UserAdmin.fieldsets + (
+#         (None, {'fields': ('society',)}),
+#     )
+
+# admin.site.register(CustomUser, CustomUserAdmin)
 
 @admin.register(Profil)
 class ProfilAdmin(admin.ModelAdmin):
