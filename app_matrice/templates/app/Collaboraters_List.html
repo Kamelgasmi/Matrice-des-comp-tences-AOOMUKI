@@ -46,7 +46,7 @@
                             <hr>
                         </td> 
                         <td width="200">
-                             <form class="form-inline" action="{% url 'matrice:DeleteCollab' collaborater_id=collaborater.id %}"  method="post" onclick="return confirm('Etes vous sur de vouloir supprimer {{ collaborater.Lastname }} {{ collaborater.Firstname }} ?');">
+                             <form class="form-inline" action="{% url 'matrice:DeleteCollab' collaborater_id=collaborater.id %}"  method="post" onclick="return confirm('Etes vous sur de vouloir supprimer {{ collaborater.user.last_name | upper }} {{ collaborater.user.first_name }} ?');">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-warning btn-sm">Supprimer le collaborateur</button>
                             </form> 

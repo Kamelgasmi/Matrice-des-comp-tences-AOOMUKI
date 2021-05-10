@@ -130,8 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '/static/')
+    os.path.join(BASE_DIR, 'cbdshop/static/')
 ]
 
 LOGIN_REDIRECT_URL = 'matrice:index'
@@ -139,6 +140,9 @@ LOGIN_REDIRECT_URL = 'matrice:index'
 LOGIN_URL = 'matrice:Connexion'
 
 LOGOUT_URL = 'matrice:Deconnexion'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # AUTH_USER_MODEL = "app_matrice.CustomUser" 
 # SITE_ID = 1

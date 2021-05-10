@@ -248,7 +248,6 @@ def AddFieldCompDegreeSociety(request):
                 form3 = AddCertificationForm()
                 form4 = AddSocietyForm()
             return redirect('matrice:Liste_des_sociétés')
-
     else:
         form1 = AddFieldForm()
         form2 = AddCompetenceForm()
@@ -327,7 +326,6 @@ def ModifyInfoCollab(request, profil_id, ):
     context = {
         'profil': profil,
         'form': form
-
     }
     if request.method == 'POST' and 'btnform2' in request.POST : #and request.is_ajax
         if request.user.is_authenticated:
@@ -339,10 +337,6 @@ def ModifyInfoCollab(request, profil_id, ):
                 formComp2 = form.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
                 formComp2.save() # sauvergarde tout cette fois ci
                 form.save_m2m()#sauvergarde le champs manytomany
-                # data = {
-                # 'message':'form is saved'
-                # }
-                # return JsonResponse(data)
                 messages.success(request, "Vos informations ont été modifiées")
                 form = ModifyProfilForm()
                 return render(request, 'app/FormModifyInfoCollab.html', context)

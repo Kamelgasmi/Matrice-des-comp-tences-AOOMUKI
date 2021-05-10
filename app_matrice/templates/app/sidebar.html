@@ -1,61 +1,89 @@
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'matrice:index' %}">
-                    <span>Accueil</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <div class="sidebar-heading text-secondary">
-                Utilisateur
-            </div>
-            {% if user.is_authenticated %}
-              {% if user.is_staff == False %}
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed text-dark" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <span class="font-weight-bold">MENU</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'matrice:Mon_profil' user_id=user.id %}" >Mon profil</a>
-                        <div class="sidebar-heading text-secondary">Créer mon profil :</div>
-                        <a class="collapse-item" href="{% url 'matrice:Ajouter_des_informations_générales' user_id=user.id %}">Formulaires Informations</a>
-                        <a class="collapse-item" href="{% url 'matrice:Ajouter_des_compétences' user_id=user.id %}">Formulaire  Compétences</a>
-                        <a class="collapse-item" href="{% url 'matrice:change_password' %}">Modifier mon<br/> mot de passe </a>
-                    </div>
+    {% load static %}
+{% if user.is_authenticated %}
+{% if user.is_staff == False %}
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar - Brand -->
+        <div class="sidebar-brand-icon rotate-n-15">
+        </div>
+        <div class="sidebar-brand-text mx-3"><img class=" fit-picture" src="{% static 'img\Aoomuki.png' %}" alt="aoomukilogo" id="aoomuki">
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'matrice:index' %}"><span>Accueil</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading text-secondary">
+            Utilisateur
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed text-dark" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <span class="font-weight-bold">MENU</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{% url 'matrice:Mon_profil' user_id=user.id %}" >Mon profil</a>
+                    <div class="sidebar-heading text-secondary">Créer mon profil :</div>
+                    <a class="collapse-item" href="{% url 'matrice:Ajouter_des_informations_générales' user_id=user.id %}">Formulaires Informations</a>
+                    <a class="collapse-item" href="{% url 'matrice:Ajouter_des_compétences' user_id=user.id %}">Formulaire  Compétences</a>
+                    <a class="collapse-item" href="{% url 'matrice:change_password' %}">Modifier mon<br/> mot de passe </a>
                 </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            </ul>
-        <!-- End of Sidebar -->
-
-        <div id="content-wrapper" class="d-flex flex-column">
+            </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+    </ul>
+<div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
-            {% else %}
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed font-weight-bold" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <span class="font-weight-bold">MENU</span>
-                </a>
-                <div id="collapsePages" class="collapse text-dark" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'matrice:Mon_profil' user_id=user.id %}" >Mon profil</a>
-                        <div class="sidebar-heading text-primary">Créer mon profil :</div>
-                        <a class="collapse-item text-dark" href="{% url 'matrice:Ajouter_des_informations_générales' user_id=user.id %}">Formulaires Informations</a>
-                        <a class="collapse-item" href="{% url 'matrice:Ajouter_des_compétences' user_id=user.id %}">Formulaire  Compétences</a>
-                        <a class="collapse-item" href="{% url 'matrice:change_password'  %}">Modifier mon<br/> mot de passe </a>
 
-                    </div>
+        <!-- End of Sidebar -->
+
+        {% comment %} <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content"> {% endcomment %}
+            {% else %}
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Nav Item - Pages Collapse Menu -->
+<!-- Sidebar - Brand -->
+        <div class="sidebar-brand-icon rotate-n-15">
+        </div>
+        <div class="sidebar-brand-text mx-3"><img class=" fit-picture" src="{% static 'img\Aoomuki.png' %}" alt="aoomukilogo" id="aoomuki">
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'matrice:index' %}"><span>Accueil</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading text-secondary">
+            Utilisateur
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed text-dark" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <span class="font-weight-bold">MENU</span>
+            </a>
+            <div id="collapsePages" class="collapse text-dark" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{% url 'matrice:Mon_profil' user_id=user.id %}" >Mon profil</a>
+                    <div class="sidebar-heading text-primary">Créer mon profil :</div>
+                    <a class="collapse-item text-dark" href="{% url 'matrice:Ajouter_des_informations_générales' user_id=user.id %}">Formulaires Informations</a>
+                    <a class="collapse-item" href="{% url 'matrice:Ajouter_des_compétences' user_id=user.id %}">Formulaire  Compétences</a>
+                    <a class="collapse-item" href="{% url 'matrice:change_password'  %}">Modifier mon<br/> mot de passe </a>
+
                 </div>
-            </li>
+            </div>
+        </li>
             <!-- Heading -->
             <div class="sidebar-heading text-secondary">
                 Admin
@@ -86,6 +114,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
         </ul>
+    
         <!-- End of Sidebar -->
 <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

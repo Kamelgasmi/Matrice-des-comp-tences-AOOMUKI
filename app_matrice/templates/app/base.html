@@ -27,16 +27,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-warning sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-                <div class="sidebar-brand-icon rotate-n-15">
-                </div>
-                <div class="sidebar-brand-text mx-3"><img class=" fit-picture" src="{% static 'img\Aoomuki.png' %}" alt="aoomukilogo" id="aoomuki">
-                </div>
+    
             
 
           {% block sidebar %}
@@ -47,9 +38,8 @@
               {% include "app/top_navigation.html" %}
           {% endblock top_navigation %}
 
-                {% block content %}
-                <!-- {{ content }} -->
-                {% endblock content %}
+            {% block content %}
+            {% endblock content %}
 
     {% load static %}
 
