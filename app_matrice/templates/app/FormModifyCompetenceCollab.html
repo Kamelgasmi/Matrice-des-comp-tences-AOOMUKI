@@ -5,11 +5,15 @@
     <div class="">
     <a href="javascript:history.go(-1)">Retour</a>
         <div class="page-title">
+                <div class="text-center  text-success" >
+                    {% include 'app/messages.html'%}
+                </div> 
+
             {% if user.is_authenticated%}
                 {% comment %} {% for profil in profil %}
                     {% if profil.user_id == user.id%}  {% endcomment %}
                 <div class="col-12 text-center">
-                    <h1>{{ user.last_name| upper }} {{ user.first_name| upper }}</h1>
+                    <h1>{{ user.last_name }} {{ user.first_name }}</h1>
                     <h2>{{ profil.society.name }}</h2>
                     <h2>{{ profil.workstation.name }}</h2>
 
@@ -19,14 +23,13 @@
             {% endif %}
                 <div class="">
                 <div class="text-center text-success " >
-                    {% include 'app/messages.html'%}
                 </div> 
                     <div class="col-md-12"> 
                     <div id=""></div>
                         <div>
                         <form method="POST" class="post-form" class="my-ajax-form" >
                                 {% csrf_token %}
-                                {{ form.as_p}}
+                                {{ form4.as_p}}
                                 <button type="submit" name="btnform2" class="save btn btn-default">VALIDER</button>
                         </form> 
                         </div>

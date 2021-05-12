@@ -7,11 +7,7 @@
     <a href="javascript:history.go(-1)">Retour</a>
     </div>
     <div class="text-center text-success " >
-        {% if messages %}
-            {% for message in messages %}
-                <h3>{{ message }}</h3>
-            {% endfor %}
-        {% endif %}
+        {% include 'app/messages.html'%}
     </div>
 </div>
     <div class=" row col-md-10 offset-1 border border-dark text-dark mb-5">

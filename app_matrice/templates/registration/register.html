@@ -11,11 +11,7 @@
         </div>
 
             <div class="text-center text-success " >
-                {% if messages %}
-                    {% for message in messages %}
-                        <h3>{{ message }}</h3>
-                    {% endfor %}
-                {% endif %}
+                {% include 'app/messages.html'%}
             </div> 
             {% comment %} <div class="col-md-10 offset-1 mb-5" >
                     <form action="{% url 'matrice:Enregistrement'  %}" method="post">

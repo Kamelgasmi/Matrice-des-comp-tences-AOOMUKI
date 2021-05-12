@@ -5,7 +5,7 @@ from .models import *
 from django.contrib import messages
 # from django.views.generic.list import ListView
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
-from .forms import AddUserForm, AddCollaboraterForm, AddFieldForm, AddCompetenceForm, AddCertificationForm, AddSocietyForm, ProfilForm, ModifyProfilForm, AddCompCollabForm, AddSocietyForm, ProfilFormUser
+from .forms import AddUserForm, AddCollaboraterForm, AddFieldForm, AddCompetenceForm, ModifyCompetenceForm, AddCertificationForm, AddSocietyForm, ProfilForm, ModifyProfilForm, AddCompCollabForm, AddSocietyForm, ProfilFormUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.views import PasswordChangeView
@@ -72,15 +72,15 @@ def DeleteCollab(request, collaborater_id):
 def Profils(request, collaborater_id):
     user=User.objects.all()
     collaborater = get_object_or_404(Collaborater, pk=collaborater_id)
-    # field=Field.objects.all()
+    field=Field.objects.all()
     profil = Profil.objects.all()
-    # listcompetence = ListofCompetence.objects.all()
-    # competence=Competence.objects.all()
+    listcompetence = ListofCompetence.objects.all()
+    competence=Competence.objects.all()
     context = {
         'profil':profil,
-        # 'field':field,
-        # 'listcompetence':listcompetence,
-        # 'competence':competence,
+        'field':field,
+        'listcompetence':listcompetence,
+        'competence':competence,
         'collaborater':collaborater,
         'user':user,
     }
@@ -320,7 +320,7 @@ def AddInfoCollab(request, user_id):
         }
     return render(request, 'app/FormInformationCollab.html', context)
 
-def ModifyInfoCollab(request, profil_id, ):
+def ModifyInfoCollab(request, profil_id ):
     profil = get_object_or_404(Profil,pk=profil_id)
     form = ModifyProfilForm(instance=profil)
     context = {
@@ -375,7 +375,7 @@ def AddCompetenceCollab(request, user_id):
                     formComp = form.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
                     formComp.User = User.objects.get(pk=request.user.id) 
                     formComp.save() # sauvergarde tout cette fois ci
-                    messages.success(request, "La compétence a été ajoutée")
+                    messages.success(request, f'La compétence {competence} a été ajoutée')
                     form = AddCompCollabForm()
                     return render(request, 'app/FormCompetencesCollab.html', context)
                 else:
@@ -390,6 +390,37 @@ def AddCompetenceCollab(request, user_id):
         'collaborater': collaborater,
         }
     return render(request, 'app/FormCompetencesCollab.html', context)
+
+def ModifyCompetenceCollab(request, listcompetence_id ):
+    listcompetence = get_object_or_404(ListofCompetence,pk=listcompetence_id)
+    form4 = ModifyCompetenceForm(instance=listcompetence)
+    context = {
+        'listcompetence': listcompetence,
+        'form4': form4
+    }
+    if request.method == 'POST' and 'btnform2' in request.POST : #and request.is_ajax
+        if request.user.is_authenticated:
+            form4 = ModifyCompetenceForm(request.POST, instance=listcompetence)
+            if form4.is_valid():
+                interest = form4.cleaned_data['Interest']
+                level = form4.cleaned_data['Level']
+                competence = form4.cleaned_data['Competence']
+                formComp3 = form4.save(commit=False) # Renvoyer un objet sans enregistrer dans la base de données
+                formComp3.save() # sauvergarde tout cette fois ci
+                # data = {
+                # 'message':'form is saved'
+                # }
+                # return JsonResponse(data)
+                messages.success(request, f'La compétence {competence} a été modifiée')
+                form4 = ModifyCompetenceForm()
+                return render(request, 'app/FormModifyCompetenceCollab.html', context)
+    else:
+        form4 = ModifyCompetenceForm(instance=listcompetence)
+        context = {
+        'listcompetence': listcompetence,
+        'form4': form4
+        }
+    return render(request, 'app/FormModifyCompetenceCollab.html', context)
 
 # class PasswordsChangeView(PasswordChangeView):
 #     from_class = PasswordChangeForm

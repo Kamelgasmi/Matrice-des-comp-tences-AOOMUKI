@@ -10,11 +10,7 @@
                 <div class="text-center border border-dark col-md-6 offset-3 mb-5">
                 <h1>LISTE DES UTILISATEURS</h1>
                 <div class="text-center  text-success" >
-                    {% if messages %}
-                        {% for message in messages %}
-                            <h3>{{ message }}</h3>
-                        {% endfor %}
-                    {% endif %}
+                    {% include 'app/messages.html'%}
                 </div> 
                 </div>
                 {% comment %} {% include 'app/search_form.html' %} {% endcomment %}

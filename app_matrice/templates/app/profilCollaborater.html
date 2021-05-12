@@ -52,7 +52,6 @@
                                 {% comment %} {% if profil.user_id == user_id  %} {% endcomment %}
                                 {% comment %} {% if collaborater.collaborater == True %} {% endcomment %}
                                 {% for field in field %}
-                                
                                 {% for listcompetence in listcompetence%}
                                 {% comment %} {% if collaborater.user_id == user.id %} {% endcomment %}
                                 {% if listcompetence.User_id == user.id %}
@@ -76,7 +75,11 @@
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="{{ Interest }}" aria-valuemin="0" aria-valuemax="4"></div>
                                     </div>
-                                    <hr>
+                                    <div class="text-center">
+                                        <a class="btn btn-info" role="button" href="{% url 'matrice:Modifier_des_compétences' listcompetence_id=listcompetence.id %}" >Modifier</a>
+                                    </div>
+                                    <hr class="color=black">
+                                </div>
                                 {% comment %} {% endif %}
                                 {% endif %} {% endcomment %}
                                 {% endif %}

@@ -35,7 +35,7 @@ urlpatterns = [
     # re_path(r'^Ajouter_des_informations_générales/(?P<user_id>[0-9]+)/$', views.AddInfoUser, name='Ajouter_des_informations_générales_Utilisateur'),
     re_path(r'^Modifier_des_informations/(?P<profil_id>[0-9]+)/$', views.ModifyInfoCollab, name='Modifier_des_informations'),
     re_path(r'^Ajouter_des_compétences/(?P<user_id>[0-9]+)/$', views.AddCompetenceCollab, name='Ajouter_des_compétences'),
-
+    re_path(r'^Modifier_des_compétences/(?P<listcompetence_id>[0-9]+)/$', views.ModifyCompetenceCollab, name='Modifier_des_compétences'),
     # path('Ajouter_Domaines_Compétences/', views.AddFieldCompDegreeSociety, name='Ajouter_Domaines_Compétences'),
 
 ]

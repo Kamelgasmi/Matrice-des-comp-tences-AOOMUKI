@@ -133,3 +133,13 @@ class AddCompCollabForm(forms.ModelForm):
             'Interest': Select(attrs={'class': 'form-control'}),
             'Level':Select(attrs={'class': 'form-control'}),
         }
+
+class ModifyCompetenceForm(forms.ModelForm):
+    class Meta:
+        model = ListofCompetence
+        fields = [ "Competence", "Interest", "Level" ]
+        widgets = {
+            'Competence': Select(attrs={'class': 'form-control'}),
+            'Interest': Select(attrs={'class': 'form-control'}),
+            'Level':Select(attrs={'class': 'form-control'}),
+        }
